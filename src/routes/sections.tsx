@@ -1,7 +1,7 @@
 import type { RouteObject } from 'react-router';
 
 import { lazy, Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 
@@ -50,19 +50,23 @@ export const routesSection: RouteObject[] = [
       </DashboardLayout>
     ),
     children: [
-      { index: true, element: <DashboardPage /> },
+      { path: 'dashboard', element: <DashboardPage /> },
       { path: 'user', element: <UserPage /> },
       { path: 'products', element: <ProductsPage /> },
       { path: 'blog', element: <BlogPage /> },
     ],
   },
   {
-    path: 'sign-in',
+    path: '/',
     element: (
       <AuthLayout>
         <SignInPage />
       </AuthLayout>
     ),
+  },
+  {
+    path: 'sign-in',
+    element: <Navigate to="/" replace />,
   },
   {
     path: '404',
